@@ -581,6 +581,138 @@ law-marketing/
 
 ## GitHub 配置
 
+### 账号配置
+
+**用户名：** kim201908  
+**仓库：** https://github.com/kim201908/WeChat_game01  
+**可见性：** Private（私有）
+
+---
+
+### SSH 密钥配置
+
+#### 第 1 步：生成 SSH 密钥
+
+```bash
+ssh-keygen -t ed25519 -C "kim201908@users.noreply.github.com"
+# 一路回车即可
+```
+
+#### 第 2 步：查看公钥
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+# 复制输出内容（以 ssh-ed25519 开头）
+```
+
+#### 第 3 步：添加到 GitHub
+
+1. 打开 https://github.com/settings/keys
+2. 点击 **New SSH key**
+3. 填写：
+   - **Title:** 阿里云 ECS
+   - **Key:** 粘贴刚才复制的公钥
+4. 点击 **Add SSH key**
+
+#### 第 4 步：测试连接
+
+```bash
+ssh -T git@github.com
+# 第一次输入 yes
+# 看到 "Hi kim201908! You've successfully authenticated" 即成功
+```
+
+---
+
+### Git 用户配置
+
+```bash
+git config --global user.email "kim201908@users.noreply.github.com"
+git config --global user.name "kim201908"
+```
+
+---
+
+### 项目初始化流程
+
+#### 第 1 步：创建项目目录
+
+```bash
+mkdir -p /root/.openclaw/workspace/projects/WeChat_game01
+cd /root/.openclaw/workspace/projects/WeChat_game01
+```
+
+#### 第 2 步：创建文档目录
+
+```bash
+mkdir -p docs
+```
+
+#### 第 3 步：复制配置文档
+
+```bash
+cp "/root/.openclaw/workspace/OpenClaw-gstack-GitHub 配置文档.md" ./docs/
+```
+
+#### 第 4 步：初始化 Git
+
+```bash
+git init
+```
+
+#### 第 5 步：添加远程仓库
+
+```bash
+git remote add origin git@github.com:kim201908/WeChat_game01.git
+```
+
+#### 第 6 步：添加文件
+
+```bash
+git add .
+```
+
+#### 第 7 步：提交
+
+```bash
+git commit -m "init: project config"
+```
+
+#### 第 8 步：重命名分支
+
+```bash
+git branch -M main
+```
+
+#### 第 9 步：推送到 GitHub
+
+```bash
+git push -u origin main
+```
+
+---
+
+### 常用 Git 命令
+
+```bash
+# 查看状态
+git status
+
+# 查看远程仓库
+git remote -v
+
+# 拉取最新代码
+git pull origin main
+
+# 查看提交历史
+git log --oneline
+
+# 修改远程仓库地址
+git remote set-url origin git@github.com:新用户名/WeChat_game01.git
+```
+
+---
+
 ### CI/CD 工作流
 
 ```yaml
