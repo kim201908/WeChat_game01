@@ -1,0 +1,192 @@
+/* app.wxss - 中国风全局样式 */
+
+/* 中国风配色 */
+page {
+  --china-red: #C41E3A;
+  --china-gold: #FFD700;
+  --china-wood: #8B4513;
+  --china-paper: #F5E6D3;
+  --china-ink: #2C2C2C;
+  --china-jade: #00A86B;
+  
+  background: linear-gradient(180deg, var(--china-paper) 0%, #E8D5C4 100%);
+  font-family: 'STKaiti', 'KaiTi', serif;
+  color: var(--china-ink);
+  min-height: 100vh;
+}
+
+/* 通用容器 */
+.container {
+  padding: 20rpx;
+}
+
+/* 中国风卡片 */
+.card {
+  background: linear-gradient(135deg, #FFF9F0 0%, #F5E6D3 100%);
+  border: 2rpx solid var(--china-gold);
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin: 16rpx 0;
+  box-shadow: 0 4rpx 12rpx rgba(139, 69, 19, 0.2);
+}
+
+/* 中国风按钮 */
+.button-china {
+  background: linear-gradient(180deg, var(--china-red) 0%, #8B0000 100%);
+  border: 2rpx solid var(--china-gold);
+  border-radius: 8rpx;
+  color: var(--china-gold);
+  font-size: 28rpx;
+  font-weight: bold;
+  padding: 16rpx 32rpx;
+  box-shadow: 0 4rpx 8rpx rgba(196, 30, 58, 0.3);
+}
+
+.button-china:active {
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* 按钮 - 禁用状态 */
+.button-disabled {
+  background: #CCCCCC;
+  border: 2rpx solid #999999;
+  color: #666666;
+}
+
+/* 标题样式 */
+.title-china {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--china-red);
+  text-align: center;
+  text-shadow: 2rpx 2rpx 4rpx rgba(0, 0, 0, 0.2);
+  margin: 20rpx 0;
+}
+
+/* 副标题 */
+.subtitle {
+  font-size: 28rpx;
+  color: var(--china-wood);
+  text-align: center;
+  margin: 10rpx 0;
+}
+
+/* 资源显示栏 */
+.resource-bar {
+  display: flex;
+  justify-content: space-around;
+  background: linear-gradient(180deg, var(--china-gold) 0%, #DAA520 100%);
+  border-radius: 8rpx;
+  padding: 16rpx;
+  margin: 20rpx 0;
+  box-shadow: 0 4rpx 8rpx rgba(218, 165, 32, 0.3);
+}
+
+.resource-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resource-label {
+  font-size: 24rpx;
+  color: var(--china-ink);
+}
+
+.resource-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: var(--china-red);
+}
+
+/* 升级按钮 */
+.upgrade-btn {
+  background: linear-gradient(180deg, var(--china-jade) 0%, #008040 100%);
+  color: white;
+  border: 2rpx solid var(--china-gold);
+  border-radius: 6rpx;
+  padding: 12rpx 24rpx;
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+/* 标签 */
+.tag {
+  display: inline-block;
+  padding: 4rpx 12rpx;
+  border-radius: 4rpx;
+  font-size: 22rpx;
+  margin: 4rpx;
+}
+
+.tag-red {
+  background: var(--china-red);
+  color: white;
+}
+
+.tag-gold {
+  background: var(--china-gold);
+  color: var(--china-ink);
+}
+
+.tag-wood {
+  background: var(--china-wood);
+  color: white;
+}
+
+/* 进度条 */
+.progress-bar {
+  width: 100%;
+  height: 20rpx;
+  background: #E0E0E0;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin: 10rpx 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--china-gold) 0%, var(--china-red) 100%);
+  transition: width 0.3s ease;
+}
+
+/* 分割线 */
+.divider {
+  height: 2rpx;
+  background: linear-gradient(90deg, transparent 0%, var(--china-gold) 50%, transparent 100%);
+  margin: 20rpx 0;
+}
+
+/* 通知提示 */
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20rpx 40rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  z-index: 1000;
+}
+
+/* 成就解锁动画 */
+@keyframes achievement-pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.achievement-unlock {
+  animation: achievement-pop 0.5s ease-out;
+}

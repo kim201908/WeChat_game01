@@ -1,0 +1,165 @@
+<!--pages/index/index.wxml - 主界面-->
+<view class="container">
+  
+  <!-- 标题 -->
+  <view class="title-china">🏮 我的中餐厅 🏮</view>
+  <view class="subtitle">AI 生成的文字放置游戏</view>
+  
+  <!-- 资源栏 -->
+  <view class="resource-bar">
+    <view class="resource-item">
+      <text class="resource-label">💰 金钱</text>
+      <text class="resource-value">¥{{money}}</text>
+    </view>
+    <view class="resource-item">
+      <text class="resource-label">⭐ 声誉</text>
+      <text class="resource-value">{{reputation}}</text>
+    </view>
+    <view class="resource-item">
+      <text class="resource-label">👨‍🍳 厨师</text>
+      <text class="resource-value">{{chefs.length}}</text>
+    </view>
+  </view>
+  
+  <!-- 收益提示 -->
+  <view class="card">
+    <text class="subtitle">每秒收益：¥{{revenuePerSecond}}</text>
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{(revenuePerSecond / maxRevenue) * 100}}%"></view>
+    </view>
+  </view>
+  
+  <!-- 厨师管理 -->
+  <view class="card">
+    <view class="title-china" style="font-size: 32rpx;">👨‍🍳 厨师管理</view>
+    <view class="divider"></view>
+    
+    <view wx:for="{{chefs}}" wx:key="id" class="chef-item">
+      <view style="display: flex; justify-content: space-between; align-items: center;">
+        <view>
+          <text style="font-weight: bold; font-size: 28rpx;">{{item.name}}</text>
+          <text class="tag tag-red">Lv.{{item.level}}</text>
+          <text class="tag tag-wood">{{item.specialty}}</text>
+        </view>
+        <view style="text-align: right;">
+          <text style="font-size: 24rpx; color: #666;">效率：{{item.efficiency * item.level * 10}}%</text>
+          <button 
+            class="button-china {{money < item.cost ? 'button-disabled' : ''}}" 
+            bindtap="upgradeChef" 
+            data-id="{{item.id}}"
+            disabled="{{money < item.cost}}">
+            升级 ¥{{item.cost}}
+          </button>
+        </view>
+      </view>
+    </view>
+    
+    <button class="button-china" bindtap="hireNewChef">雇佣新厨师</button>
+  </view>
+  
+  <!-- 菜品管理 -->
+  <view class="card">
+    <view class="title-china" style="font-size: 32rpx;">🍜 菜品管理</view>
+    <view class="divider"></view>
+    
+    <view wx:for="{{dishes}}" wx:key="id" class="dish-item">
+      <view style="display: flex; justify-content: space-between; align-items: center;">
+        <view>
+          <text style="font-weight: bold; font-size: 28rpx;">{{item.name}}</text>
+          <text class="tag tag-gold">Lv.{{item.level}}</text>
+        </view>
+        <view style="text-align: right;">
+          <text style="font-size: 24rpx; color: #666;">价格：¥{{item.price}} | 成本：¥{{item.cost}}</text>
+          <button 
+            class="upgrade-btn {{money < item.cost * item.level * 5 ? 'button-disabled' : ''}}" 
+            bindtap="upgradeDish" 
+            data-id="{{item.id}}"
+            disabled="{{money < item.cost * item.level * 5}}">
+            升级 ¥{{item.cost * item.level * 5}}
+          </button>
+        </view>
+      </view>
+    </view>
+    
+    <button class="button-china" bindtap="unlockNewDish">解锁新菜品</button>
+  </view>
+  
+  <!-- 装修管理 -->
+  <view class="card">
+    <view class="title-china" style="font-size: 32rpx;">🏠 餐厅装修</view>
+    <view class="divider"></view>
+    
+    <view class="decoration-item">
+      <view style="display: flex; justify-content: space-between;">
+        <text style="font-weight: bold;">🪑 桌椅等级：Lv.{{decorations.table.level}}</text>
+        <text>数量：{{decorations.table.count}} 桌</text>
+      </view>
+      <button 
+        class="upgrade-btn {{money < decorations.table.cost ? 'button-disabled' : ''}}" 
+        bindtap="upgradeDecoration" 
+        data-type="table"
+        disabled="{{money < decorations.table.cost}}">
+        升级 ¥{{decorations.table.cost}}
+      </button>
+    </view>
+    
+    <view class="decoration-item" style="margin-top: 20rpx;">
+      <view style="display: flex; justify-content: space-between;">
+        <text style="font-weight: bold;">🖼️ 装饰等级：Lv.{{decorations.decor.level}}</text>
+      </view>
+      <button 
+        class="upgrade-btn {{money < decorations.decor.cost ? 'button-disabled' : ''}}" 
+        bindtap="upgradeDecoration" 
+        data-type="decor"
+        disabled="{{money < decorations.decor.cost}}">
+        升级 ¥{{decorations.decor.cost}}
+      </button>
+    </view>
+    
+    <view class="decoration-item" style="margin-top: 20rpx;">
+      <view style="display: flex; justify-content: space-between;">
+        <text style="font-weight: bold;">🔥 厨房等级：Lv.{{decorations.kitchen.level}}</text>
+      </view>
+      <button 
+        class="upgrade-btn {{money < decorations.kitchen.cost ? 'button-disabled' : ''}}" 
+        bindtap="upgradeDecoration" 
+        data-type="kitchen"
+        disabled="{{money < decorations.kitchen.cost}}">
+        升级 ¥{{decorations.kitchen.cost}}
+      </button>
+    </view>
+  </view>
+  
+  <!-- 经营统计 -->
+  <view class="card">
+    <view class="title-china" style="font-size: 32rpx;">📊 经营统计</view>
+    <view class="divider"></view>
+    
+    <view style="display: flex; justify-content: space-around; text-align: center;">
+      <view>
+        <text class="resource-label">累计接待</text>
+        <text class="resource-value">{{customers}}</text>
+      </view>
+      <view>
+        <text class="resource-label">累计收入</text>
+        <text class="resource-value">¥{{Math.floor(revenue)}}</text>
+      </view>
+      <view>
+        <text class="resource-label">成就</text>
+        <text class="resource-value">{{achievements.length}}/{{totalAchievements}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部按钮 -->
+  <view style="display: flex; gap: 20rpx; margin-top: 40rpx;">
+    <button class="button-china" style="flex: 1;" bindtap="saveGame">💾 保存游戏</button>
+    <button class="button-china" style="flex: 1; background: linear-gradient(180deg, #FF6B6B 0%, #C41E3A 100%);" bindtap="resetGame">🔄 重新开始</button>
+  </view>
+  
+</view>
+
+<!-- 成就解锁提示 -->
+<view wx:if="{{showAchievement}}" class="toast achievement-unlock">
+  <text>🏆 解锁成就：{{achievementName}}</text>
+</view>

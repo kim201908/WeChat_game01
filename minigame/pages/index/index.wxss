@@ -1,0 +1,22 @@
+/* pages/index/index.wxss */
+.container {
+  padding: 20rpx;
+  padding-bottom: 40rpx;
+}
+
+.chef-item,
+.dish-item,
+.decoration-item {
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #E8D5C4;
+}
+
+.chef-item:last-child,
+.dish-item:last-child,
+.decoration-item:last-child {
+  border-bottom: none;
+}
+
+button {
+  margin-top: 10rpx;
+}

@@ -1,0 +1,21 @@
+{
+  "cloud": true,
+  "appid": "wx7a8b9c0d1e2f3g4h",
+  "projectname": "my-chinese-restaurant",
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "compileHotReLoad": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "libVersion": "2.19.4",
+  "condition": {}
+}

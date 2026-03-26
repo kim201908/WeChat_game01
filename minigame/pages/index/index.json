@@ -1,0 +1,8 @@
+<!--pages/index/index.json-->
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "我的中餐厅",
+  "navigationBarBackgroundColor": "#C41E3A",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#F5E6D3"
+}
