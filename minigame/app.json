@@ -1,4 +1,14 @@
 {
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#C41E3A",
+    "navigationBarTitleText": "我的中餐厅",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5E6D3"
+  },
   "description": "我的中餐厅 - AI 生成的文字放置游戏",
   "packOptions": {
     "ignore": [],
