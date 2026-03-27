@@ -35,13 +35,13 @@ App({
   },
 
   onLaunch() {
-    // 初始化云开发环境
-    if (wx.cloud) {
-      wx.cloud.init({
-        env: 'your-env-id',  // 替换为你的云开发环境 ID
-        traceUser: true,
-      })
-    }
+    // 初始化云开发环境 - 已注释，本地测试不需要
+    // if (wx.cloud) {
+    //   wx.cloud.init({
+    //     env: 'your-env-id',
+    //     traceUser: true,
+    //   })
+    // }
     
     // 加载游戏存档
     this.loadGame()
